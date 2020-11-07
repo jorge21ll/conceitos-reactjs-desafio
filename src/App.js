@@ -13,20 +13,20 @@ function App() {
 
   async function handleAddRepository() {
     const response = await api.post('repositories', {
-      title:"teste de adicionar repositório",
-      url: "https://github.com/jorge21ll/conceitos-nodejs",
+      title: "Test",
+      url: "http://github.com",
       techs: [" Node.js ", " ReactJS "]
     })
 
-  setRepositories([...repositories, response.data]);
+    setRepositories([...repositories, response.data]);
   }
 
   async function handleRemoveRepository(id) {
-   await api.delete(`repositories/${id}`);
+    await api.delete(`/repositories/${id}`);
 
-   setRepositories(repositories.filter(
-     repository => repository.id !== id,
-   ))
+    setRepositories(repositories.filter(
+      repository => repository.id !== id
+    ))
 
   }
 
@@ -35,13 +35,11 @@ function App() {
       <ul data-testid="repository-list">
         {repositories.map(repository => (
           <li key={repository.id}>
-            {repository.title},
-            {repository.techs},
-
+            {repository.title}
 
             <button onClick={() => handleRemoveRepository(repository.id)}>
               Remover
-          </button>
+            </button>
           </li>
         ))}
       </ul>
