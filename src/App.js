@@ -6,7 +6,10 @@ function App() {
   const [repositories, setRepositories] = useState([]);
 
   useEffect(() => {
-    api.get('repositories', (response) => {
+    // api.get('repositories', (response) => {
+    //   setRepositories(response.data);
+    // })
+    api.get('repositories').then((response) => {
       setRepositories(response.data);
     })
   }, [])
